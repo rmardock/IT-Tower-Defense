@@ -1,0 +1,27 @@
+# Docker-compose file for IT Tower Defense containers
+version: "3.1"
+services:
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: ittd_container
+    ports: 
+    - "8000:8000"
+    volumes:
+    - .:/project
+    environment:
+      FLASK_ENV: development
+    restart: unless-stopped
+  # Uncomment the following lines to add a SQL database container
+  # db:
+  #   image: mysql:latest
+  #   container_name: ittd_db
+  #   volumes:
+  #     - "./sql:/var/lib/ittd_sql"
+  #     - "./sql:/docker-entrypoint-initdb.d"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: rootpwdhere
+  #   ports:
+  #     - "3306:3306"
+  #   restart: unless-stopped
