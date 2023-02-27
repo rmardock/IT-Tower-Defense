@@ -2,16 +2,14 @@
 version: "3.1"
 services:
   web:
-    build: 
-      context: .
-      dockerfile: Dockerfile
+    build: .
+    command: npm run dev
     container_name: ittd_container
     ports: 
-    - "8000:8000"
+    - "9000:9000"
     volumes:
-    - .:/project
-    environment:
-      FLASK_ENV: development
+    - .:/app
+    - /app/node_modules
     restart: unless-stopped
   # Uncomment the following lines to add a SQL database container
   # db:

@@ -1,5 +1,6 @@
-FROM python:3.7-alpine
-WORKDIR /project
-COPY requirements.txt requirements.txt
-RUN pip install -r requirements.txt
-CMD python -m http.server
+FROM node:19-alpine3.16
+WORKDIR /app
+COPY jsconfig.json /app/jsconfig.json
+COPY package.json /app/package.json
+EXPOSE 9000
+RUN npm install --quiet
